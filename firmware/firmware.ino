@@ -1,7 +1,8 @@
 #include <SPI.h>
-#include "Adafruit_MAX31855.h"
+#include "Adafruit_MAX31856.h"
 
 #define MAXDO   12
+#define MAXDI   11
 #define MAXCS   10
 #define MAXCLK  13
 
@@ -117,7 +118,8 @@ void HTR_TriggerZeroCross() {
 // Main bits
 // ********************
 
-Adafruit_MAX31855 thermocouple(MAXCLK, MAXCS, MAXDO);
+Adafruit_MAX31856 TC = Adafruit_MAX31856(MAXCS, MAXDI, MAXDO, MAXCLK);
+
 PID_s pid_params;
 
 void setup()
@@ -129,7 +131,7 @@ void setup()
     delay(1);
   }
 
-  Serial.println("Starting Oven Temperature Controller...");
+  Serial.println("Starting Temperature Controller...");
 
   // setup heater input and output pins
   pinMode(HTR_PWM, OUTPUT);
@@ -144,7 +146,9 @@ void setup()
   pid_params.integ_min = -1000;
   pid_params.integ_accum = 0;
 
-  // wait for MAX31855 chip to stabilize
+  // initialize MAX31856 chip and wait for it to stabilize
+  TC.begin();
+  TC.setThermocoupleType(MAX31856_TCTYPE_K);
   delay(500);
 
   Serial.println("Controller Initialized.");
@@ -152,20 +156,34 @@ void setup()
 
 float time_sec = 0;
 int sample_rate_msec = 500;
+float temp_setpoint = 50;
 void loop()
 {
   DBG_PRINT.print("MAX31855 Temp = ");
-  DBG_PRINT.print(thermocouple.readInternal());
+  DBG_PRINT.print(TC.readCJTemperature());
   DBG_PRINT.println(" C");
 
-  float tc_pv = thermocouple.readCelsius();  // thermocouple.readFarenheit()
+  float tc_pv = TC.readThermocoupleTemperature();
   if (isnan(tc_pv))
   {
     USE_SERIAL.println("TC Error!");
   }
 
+  // Check and print any faults
+  uint8_t fault = TC.readFault();
+  if (fault) {
+    if (fault & MAX31856_FAULT_CJRANGE) USE_SERIAL.println("Cold Junction Range Fault");
+    if (fault & MAX31856_FAULT_TCRANGE) USE_SERIAL.println("Thermocouple Range Fault");
+    if (fault & MAX31856_FAULT_CJHIGH)  USE_SERIAL.println("Cold Junction High Fault");
+    if (fault & MAX31856_FAULT_CJLOW)   USE_SERIAL.println("Cold Junction Low Fault");
+    if (fault & MAX31856_FAULT_TCHIGH)  USE_SERIAL.println("Thermocouple High Fault");
+    if (fault & MAX31856_FAULT_TCLOW)   USE_SERIAL.println("Thermocouple Low Fault");
+    if (fault & MAX31856_FAULT_OVUV)    USE_SERIAL.println("Over/Under Voltage Fault");
+    if (fault & MAX31856_FAULT_OPEN)    USE_SERIAL.println("Thermocouple Open Fault");
+  }
 
-  float error = 50 - tc_pv;
+  // Update temperature controller error
+  float error = temp_setpoint - tc_pv;
   float mv = 0;
 
   mv = PID_Update(&pid_params, error, tc_pv);
@@ -178,7 +196,7 @@ void loop()
   else if (mv < MV_MIN) 
   {
     mv = MV_MIN;
-  }
+  } 
 
   // prevent heater from exceeding max temp setpoint
   // NOTE: threshold is slightly above setpoint to allow a little overshoot
