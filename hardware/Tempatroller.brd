@@ -193,8 +193,8 @@
 <circle x="27.305" y="27.305" radius="0.635" width="0.127" layer="49"/>
 </plain>
 <libraries>
-<library name="ReflowOvenController">
-<description>Generated from &lt;b&gt;ReflowOvenController.sch&lt;/b&gt;&lt;p&gt;
+<library name="Tempatroller">
+<description>Generated from &lt;b&gt;Tempatroller.sch&lt;/b&gt;&lt;p&gt;
 by exp-lbrs.ulp</description>
 <packages>
 <package name="1X08">
@@ -626,22 +626,22 @@ http://www.bccomponents.com/</description>
 <text x="-3.175" y="0" size="1.016" layer="25" rot="R90" align="center">&gt;NAME</text>
 <text x="0" y="0" size="1.016" layer="27" align="center">&gt;VALUE</text>
 </package>
-</packages>
-</library>
-<library name="SmslsTron">
-<description>Generated from &lt;b&gt;SmslsTron.sch&lt;/b&gt;&lt;p&gt;
-by exp-lbrs.ulp</description>
-<packages>
-<package name="SILK_QC">
-<text x="10.16" y="1.27" size="2.54" layer="21" font="vector" ratio="15" align="center-left">&gt;REV</text>
-<text x="0" y="5.08" size="2.54" layer="21" font="vector" ratio="15" align="center-left">&gt;PRODUCT</text>
-<text x="0" y="1.27" size="2.54" layer="21" font="vector" ratio="15" align="center-left">Rev.</text>
-<polygon width="0.4064" layer="21">
-<vertex x="0" y="-1.27"/>
-<vertex x="25.4" y="-1.27"/>
-<vertex x="25.4" y="-8.89"/>
-<vertex x="0" y="-8.89"/>
-</polygon>
+<package name="CHIP-LED0805">
+<description>&lt;b&gt;Hyper CHIPLED Hyper-Bright LED&lt;/b&gt;&lt;p&gt;
+LB R99A&lt;br&gt;
+Source: http://www.osram.convergy.de/ ... lb_r99a.pdf</description>
+<wire x1="-0.45" y1="-0.625" x2="0.45" y2="-0.625" width="0.1016" layer="51"/>
+<wire x1="-0.45" y1="0.625" x2="0.475" y2="0.625" width="0.1016" layer="51"/>
+<rectangle x1="-0.225" y1="-0.75" x2="-0.075" y2="-0.45" layer="21" rot="R90"/>
+<rectangle x1="-0.225" y1="0.45" x2="-0.075" y2="0.75" layer="21" rot="R90"/>
+<rectangle x1="-0.3" y1="-0.15" x2="0" y2="0.15" layer="21" rot="R90"/>
+<rectangle x1="-1.425" y1="-0.3" x2="-0.075" y2="0.3" layer="51" rot="R90"/>
+<rectangle x1="0.075" y1="-0.3" x2="1.425" y2="0.3" layer="51" rot="R90"/>
+<smd name="A" x="1.05" y="0" dx="1.2" dy="1.2" layer="1" rot="R90"/>
+<smd name="C" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1" rot="R90"/>
+<text x="0" y="1.27" size="1.016" layer="25" rot="R180" align="center">&gt;NAME</text>
+<text x="0" y="0" size="1.016" layer="27" rot="R180" align="center">&gt;VALUE</text>
+<text x="0" y="-1.27" size="1.016" layer="25" rot="R180" align="center">&gt;LABEL</text>
 </package>
 <package name="SCREWTERMINAL-5MM-2">
 <circle x="2.5" y="3.7" radius="0.2828" width="0.127" layer="51"/>
@@ -663,46 +663,16 @@ by exp-lbrs.ulp</description>
 <text x="-1.27" y="2.54" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-1.27" y="1.27" size="0.4064" layer="27">&gt;VALUE</text>
 </package>
-<package name="CHIP-LED0805">
-<description>&lt;b&gt;Hyper CHIPLED Hyper-Bright LED&lt;/b&gt;&lt;p&gt;
-LB R99A&lt;br&gt;
-Source: http://www.osram.convergy.de/ ... lb_r99a.pdf</description>
-<wire x1="-0.45" y1="-0.625" x2="0.45" y2="-0.625" width="0.1016" layer="51"/>
-<wire x1="-0.45" y1="0.625" x2="0.475" y2="0.625" width="0.1016" layer="51"/>
-<rectangle x1="-0.225" y1="-0.75" x2="-0.075" y2="-0.45" layer="21" rot="R90"/>
-<rectangle x1="-0.225" y1="0.45" x2="-0.075" y2="0.75" layer="21" rot="R90"/>
-<rectangle x1="-0.3" y1="-0.15" x2="0" y2="0.15" layer="21" rot="R90"/>
-<rectangle x1="-1.425" y1="-0.3" x2="-0.075" y2="0.3" layer="51" rot="R90"/>
-<rectangle x1="0.075" y1="-0.3" x2="1.425" y2="0.3" layer="51" rot="R90"/>
-<smd name="A" x="1.05" y="0" dx="1.2" dy="1.2" layer="1" rot="R90"/>
-<smd name="C" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1" rot="R90"/>
-<text x="0" y="1.27" size="1.016" layer="25" rot="R180" align="center">&gt;NAME</text>
-<text x="0" y="0" size="1.016" layer="27" rot="R180" align="center">&gt;VALUE</text>
-<text x="0" y="-1.27" size="1.016" layer="25" rot="R180" align="center">&gt;LABEL</text>
-</package>
-<package name="R0805">
-<description>&lt;b&gt;RESISTOR&lt;/b&gt;&lt;p&gt;</description>
-<wire x1="-0.41" y1="0.635" x2="0.41" y2="0.635" width="0.127" layer="51"/>
-<wire x1="-0.41" y1="-0.635" x2="0.41" y2="-0.635" width="0.127" layer="51"/>
-<wire x1="-1.8542" y1="1.016" x2="1.8542" y2="1.016" width="0.0508" layer="39"/>
-<wire x1="1.8542" y1="1.016" x2="1.8542" y2="-1.016" width="0.0508" layer="39"/>
-<wire x1="1.8542" y1="-1.016" x2="-1.8542" y2="-1.016" width="0.0508" layer="39"/>
-<wire x1="-1.8542" y1="-1.016" x2="-1.8542" y2="1.016" width="0.0508" layer="39"/>
-<rectangle x1="0.4064" y1="-0.6985" x2="1.0564" y2="0.7015" layer="51"/>
-<rectangle x1="-1.0668" y1="-0.6985" x2="-0.4168" y2="0.7015" layer="51"/>
-<rectangle x1="-0.1999" y1="-0.5001" x2="0.1999" y2="0.5001" layer="35"/>
-<smd name="1" x="-0.95" y="0" dx="1.3" dy="1.5" layer="1"/>
-<smd name="2" x="0.95" y="0" dx="1.3" dy="1.5" layer="1"/>
-<text x="0" y="1.905" size="1.016" layer="25" align="center">&gt;NAME</text>
-<text x="0" y="0" size="1.016" layer="27" align="center">&gt;VALUE</text>
-<wire x1="-1.905" y1="1.0668" x2="-1.905" y2="0.4318" width="0.127" layer="21"/>
-<wire x1="-1.905" y1="1.0668" x2="-1.27" y2="1.0668" width="0.127" layer="21"/>
-<wire x1="1.905" y1="-1.0668" x2="1.905" y2="-0.4318" width="0.127" layer="21"/>
-<wire x1="1.905" y1="-1.0668" x2="1.27" y2="-1.0668" width="0.127" layer="21"/>
-<wire x1="1.905" y1="1.0668" x2="1.27" y2="1.0668" width="0.127" layer="21"/>
-<wire x1="1.905" y1="1.0668" x2="1.905" y2="0.4318" width="0.127" layer="21"/>
-<wire x1="-1.905" y1="-1.0668" x2="-1.27" y2="-1.0668" width="0.127" layer="21"/>
-<wire x1="-1.905" y1="-1.0668" x2="-1.905" y2="-0.4318" width="0.127" layer="21"/>
+<package name="SILK_QC">
+<text x="10.16" y="1.27" size="2.54" layer="21" font="vector" ratio="15" align="center-left">&gt;REV</text>
+<text x="0" y="5.08" size="2.54" layer="21" font="vector" ratio="15" align="center-left">&gt;PRODUCT</text>
+<text x="0" y="1.27" size="2.54" layer="21" font="vector" ratio="15" align="center-left">Rev.</text>
+<polygon width="0.4064" layer="21">
+<vertex x="0" y="-1.27"/>
+<vertex x="25.4" y="-1.27"/>
+<vertex x="25.4" y="-8.89"/>
+<vertex x="0" y="-8.89"/>
+</polygon>
 </package>
 </packages>
 </library>
@@ -898,177 +868,177 @@ Please make sure your boards conform to these design rules.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="DIO-L" library="ReflowOvenController" package="1X08" value="8x1F-H8.5" x="39.37" y="50.8" smashed="yes" rot="MR180"/>
-<element name="DIO-H" library="ReflowOvenController" package="1X10" value="10x1F-H8.5" x="14.986" y="50.8" smashed="yes" rot="MR180"/>
-<element name="AIO" library="ReflowOvenController" package="1X06" value="6x1F-H8.5" x="41.91" y="2.54" smashed="yes" rot="MR180"/>
-<element name="U1" library="ReflowOvenController" package="VSK-S5" value="VSK-S5" x="55.88" y="20.32" smashed="yes" rot="R180">
+<element name="DIO-L" library="Tempatroller" package="1X08" value="8x1F-H8.5" x="39.37" y="50.8" smashed="yes" rot="MR180"/>
+<element name="DIO-H" library="Tempatroller" package="1X10" value="10x1F-H8.5" x="14.986" y="50.8" smashed="yes" rot="MR180"/>
+<element name="AIO" library="Tempatroller" package="1X06" value="6x1F-H8.5" x="41.91" y="2.54" smashed="yes" rot="MR180"/>
+<element name="U1" library="Tempatroller" package="VSK-S5" value="VSK-S5" x="55.88" y="20.32" smashed="yes" rot="R180">
 <attribute name="PN-DK" value="102-2387-ND" x="55.88" y="20.32" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="82.55" y="20.32" size="1.27" layer="25" rot="R270" align="center"/>
 <attribute name="VALUE" x="55.88" y="22.86" size="1.27" layer="27" align="center"/>
 </element>
-<element name="POWER" library="ReflowOvenController" package="1X08" value="8x1F-H8.5" x="21.59" y="2.54" smashed="yes" rot="MR180"/>
-<element name="C1" library="ReflowOvenController" package="153CLV-1014" value="220u" x="22.86" y="20.32" smashed="yes" rot="R270">
+<element name="POWER" library="Tempatroller" package="1X08" value="8x1F-H8.5" x="21.59" y="2.54" smashed="yes" rot="MR180"/>
+<element name="C1" library="Tempatroller" package="153CLV-1014" value="220u" x="22.86" y="20.32" smashed="yes" rot="R270">
 <attribute name="PN-DK" value="PCE3812CT-ND" x="22.86" y="20.32" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="20.53" y="14.155" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="21.155" y="22.47" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="C2" library="ReflowOvenController" package="C0805" value="1u" x="25.4" y="8.89" smashed="yes" rot="R270">
+<element name="C2" library="Tempatroller" package="C0805" value="1u" x="25.4" y="8.89" smashed="yes" rot="R270">
 <attribute name="NAME" x="25.4" y="12.065" size="1.27" layer="25" rot="R90" align="center"/>
 <attribute name="VALUE" x="24.765" y="9.525" size="1.27" layer="27" rot="R270"/>
 <attribute name="PN-DK" value="" x="25.4" y="8.89" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="" x="25.4" y="8.89" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="U2" library="ReflowOvenController" package="TSSOP14" value="MAX31856" x="20.955" y="36.83" smashed="yes" rot="R270">
+<element name="U2" library="Tempatroller" package="TSSOP14" value="MAX31856" x="20.955" y="36.83" smashed="yes" rot="R270">
 <attribute name="PN-DK" value="MAX31856MUD+-ND" x="20.955" y="36.83" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="MAX31856MUD+" x="20.955" y="36.83" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="19.05" y="40.005" size="1.016" layer="25" align="center"/>
 <attribute name="VALUE" x="21.59" y="36.83" size="1.016" layer="27" rot="R270" align="center"/>
 </element>
-<element name="C3" library="ReflowOvenController" package="C0805" value="100n" x="23.495" y="31.75" smashed="yes">
+<element name="C3" library="Tempatroller" package="C0805" value="100n" x="23.495" y="31.75" smashed="yes">
 <attribute name="PN-DK" value="" x="23.495" y="31.75" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="" x="23.495" y="31.75" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="22.225" y="29.845" size="1.016" layer="25" align="center"/>
 <attribute name="VALUE" x="23.495" y="31.75" size="1.016" layer="27" align="center"/>
 </element>
-<element name="C4" library="ReflowOvenController" package="C0805" value="100n" x="18.415" y="31.75" smashed="yes" rot="R180">
+<element name="C4" library="Tempatroller" package="C0805" value="100n" x="18.415" y="31.75" smashed="yes" rot="R180">
 <attribute name="PN-DK" value="" x="18.415" y="31.75" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="18.415" y="31.75" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="19.685" y="29.845" size="1.016" layer="25" rot="R180" align="center"/>
 <attribute name="VALUE" x="18.415" y="31.75" size="1.016" layer="27" rot="R180" align="center"/>
 </element>
-<element name="C5" library="ReflowOvenController" package="C0805" value="100n" x="13.97" y="36.83" smashed="yes" rot="R270">
+<element name="C5" library="Tempatroller" package="C0805" value="100n" x="13.97" y="36.83" smashed="yes" rot="R270">
 <attribute name="PN-DK" value="" x="13.97" y="36.83" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="" x="13.97" y="36.83" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="15.875" y="36.83" size="1.016" layer="25" rot="R270" align="center"/>
 <attribute name="VALUE" x="13.97" y="36.83" size="1.016" layer="27" rot="R270" align="center"/>
 </element>
-<element name="C6" library="ReflowOvenController" package="C0805" value="10n" x="11.43" y="34.29" smashed="yes" rot="R270">
+<element name="C6" library="Tempatroller" package="C0805" value="10n" x="11.43" y="34.29" smashed="yes" rot="R270">
 <attribute name="PN-DK" value="" x="11.43" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="" x="11.43" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="9.525" y="32.385" size="1.016" layer="25" rot="R270" align="center"/>
 <attribute name="VALUE" x="11.43" y="34.29" size="1.016" layer="27" rot="R270" align="center"/>
 </element>
-<element name="C7" library="ReflowOvenController" package="C0805" value="10n" x="11.43" y="39.37" smashed="yes" rot="R90">
+<element name="C7" library="Tempatroller" package="C0805" value="10n" x="11.43" y="39.37" smashed="yes" rot="R90">
 <attribute name="PN-DK" value="" x="11.43" y="39.37" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="" x="11.43" y="39.37" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="9.525" y="41.275" size="1.016" layer="25" rot="R90" align="center"/>
 <attribute name="VALUE" x="11.43" y="39.37" size="1.016" layer="27" rot="R90" align="center"/>
 </element>
-<element name="U3" library="ReflowOvenController" package="SOP-4" value="LTV-354T" x="53.34" y="38.1" smashed="yes">
+<element name="U3" library="Tempatroller" package="SOP-4" value="LTV-354T" x="53.34" y="38.1" smashed="yes">
 <attribute name="PN-DK" value="160-1333-1-ND" x="53.34" y="38.1" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="LTV-354T" x="53.34" y="38.1" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="55.245" y="34.925" size="1.016" layer="25" rot="R180" align="center"/>
 <attribute name="VALUE" x="53.34" y="38.1" size="1.016" layer="27" rot="R180" align="center"/>
 </element>
-<element name="R1" library="ReflowOvenController" package="R1206" value="47k" x="61.595" y="40.005" smashed="yes" rot="R180">
+<element name="R1" library="Tempatroller" package="R1206" value="47k" x="61.595" y="40.005" smashed="yes" rot="R180">
 <attribute name="PN-DK" value="" x="61.595" y="40.005" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="61.595" y="40.005" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="65.405" y="40.005" size="1.016" layer="25" rot="R180" align="center"/>
 <attribute name="VALUE" x="61.595" y="40.005" size="1.016" layer="27" rot="R180" align="center"/>
 </element>
-<element name="R2" library="ReflowOvenController" package="R1206" value="47k" x="61.595" y="36.195" smashed="yes" rot="R180">
+<element name="R2" library="Tempatroller" package="R1206" value="47k" x="61.595" y="36.195" smashed="yes" rot="R180">
 <attribute name="PN-DK" value="" x="61.595" y="36.195" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="61.595" y="36.195" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="65.405" y="36.195" size="1.016" layer="25" rot="R180" align="center"/>
 <attribute name="VALUE" x="61.595" y="36.195" size="1.016" layer="27" rot="R180" align="center"/>
 </element>
-<element name="F1" library="ReflowOvenController" package="2SMD-2410" value="250V/1A" x="83.82" y="39.37" smashed="yes" rot="R180">
+<element name="F1" library="Tempatroller" package="2SMD-2410" value="250V/1A" x="83.82" y="39.37" smashed="yes" rot="R180">
 <attribute name="PN-DK" value="F3144CT-ND" x="83.82" y="39.37" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="0454001.MR" x="83.82" y="39.37" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="83.82" y="41.91" size="1.016" layer="25" rot="R180" align="center"/>
 <attribute name="VALUE" x="83.82" y="38.735" size="1.016" layer="27" rot="R180" align="center"/>
 </element>
-<element name="AC/L" library="ReflowOvenController" package="QUICK-1" value="JMP-1-QUICK" x="86.36" y="30.48" smashed="yes" rot="R270">
+<element name="AC/L" library="Tempatroller" package="QUICK-1" value="JMP-1-QUICK" x="86.36" y="30.48" smashed="yes" rot="R270">
 <attribute name="PN-DK" value="36-1287-ND" x="86.36" y="30.48" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="1287" x="86.36" y="30.48" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="88.9" y="30.48" size="1.016" layer="25" rot="R270" align="center"/>
 <attribute name="VALUE" x="85.09" y="30.48" size="1.016" layer="27" rot="R270" align="center"/>
 </element>
-<element name="AC/N" library="ReflowOvenController" package="QUICK-1" value="JMP-1-QUICK" x="86.36" y="10.16" smashed="yes" rot="R90">
+<element name="AC/N" library="Tempatroller" package="QUICK-1" value="JMP-1-QUICK" x="86.36" y="10.16" smashed="yes" rot="R90">
 <attribute name="PN-DK" value="36-1287-ND" x="86.36" y="10.16" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="1287" x="86.36" y="10.16" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="83.185" y="10.16" size="1.016" layer="25" rot="R90" align="center"/>
 <attribute name="VALUE" x="87.63" y="10.16" size="1.016" layer="27" rot="R90" align="center"/>
 </element>
-<element name="JP1" library="SmslsTron" package="SCREWTERMINAL-5MM-2" value="M025MM" x="2.54" y="18.415" smashed="yes" rot="R270">
+<element name="JP1" library="Tempatroller" package="SCREWTERMINAL-5MM-2" value="M025MM" x="2.54" y="18.415" smashed="yes" rot="R270">
 <attribute name="PN-DK" value="277-1247-ND" x="2.54" y="18.415" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="1729128" x="2.54" y="18.415" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="JP3" library="SmslsTron" package="SCREWTERMINAL-5MM-2" value="M025MM" x="1.905" y="39.37" rot="R270">
+<element name="JP3" library="Tempatroller" package="SCREWTERMINAL-5MM-2" value="M025MM" x="1.905" y="39.37" rot="R270">
 <attribute name="PN-DK" value="277-1247-ND" x="1.905" y="39.37" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="1729128" x="1.905" y="39.37" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="U4" library="ReflowOvenController" package="SOP-4" value="FODM3053" x="53.34" y="45.085" smashed="yes" rot="R180">
+<element name="U4" library="Tempatroller" package="SOP-4" value="FODM3053" x="53.34" y="45.085" smashed="yes" rot="R180">
 <attribute name="PN-DK" value="FODM3053R2_NF098CT-ND" x="53.34" y="45.085" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="FODM3053R2_NF098" x="53.34" y="45.085" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="51.435" y="48.26" size="1.016" layer="25" align="center"/>
 <attribute name="VALUE" x="53.34" y="45.085" size="1.016" layer="27" align="center"/>
 </element>
-<element name="R3" library="ReflowOvenController" package="R0805" value="100" x="45.72" y="43.815" smashed="yes" rot="R90">
+<element name="R3" library="Tempatroller" package="R0805" value="100" x="45.72" y="43.815" smashed="yes" rot="R90">
 <attribute name="PN-DK" value="" x="45.72" y="43.815" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="" x="45.72" y="43.815" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="45.72" y="40.64" size="1.016" layer="25" rot="R90" align="center"/>
 <attribute name="VALUE" x="45.72" y="43.815" size="1.016" layer="27" rot="R90" align="center"/>
 </element>
-<element name="HTR/L" library="ReflowOvenController" package="QUICK-1" value="JMP-1-QUICK" x="85.09" y="50.8" smashed="yes">
+<element name="HTR/L" library="Tempatroller" package="QUICK-1" value="JMP-1-QUICK" x="85.09" y="50.8" smashed="yes">
 <attribute name="PN-DK" value="36-1287-ND" x="85.09" y="50.8" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="1287" x="85.09" y="50.8" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="85.09" y="47.625" size="1.016" layer="25" align="center"/>
 <attribute name="VALUE" x="85.09" y="49.53" size="1.016" layer="27" align="center"/>
 </element>
-<element name="HTR/N" library="ReflowOvenController" package="QUICK-1" value="JMP-1-QUICK" x="68.58" y="50.8" smashed="yes">
+<element name="HTR/N" library="Tempatroller" package="QUICK-1" value="JMP-1-QUICK" x="68.58" y="50.8" smashed="yes">
 <attribute name="PN-DK" value="36-1287-ND" x="68.58" y="50.8" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="1287" x="68.58" y="50.8" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="68.58" y="48.26" size="1.016" layer="25" align="center"/>
 <attribute name="VALUE" x="68.58" y="49.53" size="1.016" layer="27" align="center"/>
 </element>
-<element name="U5" library="ReflowOvenController" package="TO263-3" value="T25" x="65.405" y="39.37" smashed="yes" rot="MR270">
+<element name="U5" library="Tempatroller" package="TO263-3" value="T25" x="65.405" y="39.37" smashed="yes" rot="MR270">
 <attribute name="NAME" x="73.66" y="34.925" size="1.27" layer="26" rot="MR180" align="center"/>
 <attribute name="VALUE" x="65.405" y="33.02" size="1.27" layer="26" rot="MR0" align="center"/>
 <attribute name="PN-DK" value="497-10581-1-ND" x="65.405" y="39.37" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
-<element name="R4" library="ReflowOvenController" package="R1206" value="1k" x="62.865" y="46.355" smashed="yes">
+<element name="R4" library="Tempatroller" package="R1206" value="1k" x="62.865" y="46.355" smashed="yes">
 <attribute name="PN-DK" value="" x="62.865" y="46.355" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="" x="62.865" y="46.355" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="66.675" y="46.355" size="1.016" layer="25" align="center"/>
 <attribute name="VALUE" x="62.865" y="46.355" size="1.016" layer="27" align="center"/>
 </element>
-<element name="U$1" library="SmslsTron" package="SILK_QC" value="SILK_QC" x="20.32" y="12.7" rot="MR90">
+<element name="U$1" library="Tempatroller" package="SILK_QC" value="SILK_QC" x="20.32" y="12.7" rot="MR90">
 <attribute name="REV" value="1B" x="20.32" y="12.7" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="MPN" value="DNP" x="20.32" y="12.7" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="PRODUCT" value="TempController" x="20.32" y="12.7" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
-<element name="R5" library="SmslsTron" package="R0805" value="390" x="5.715" y="3.175" smashed="yes" rot="R180">
+<element name="R5" library="Tempatroller" package="R0805" value="390" x="5.715" y="3.175" smashed="yes" rot="R180">
 <attribute name="PN-DK" value="" x="5.715" y="3.175" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="" x="5.715" y="3.175" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="9.525" y="3.175" size="1.016" layer="25" rot="R180" align="center"/>
 <attribute name="VALUE" x="5.715" y="3.175" size="1.016" layer="27" rot="R180" align="center"/>
 </element>
-<element name="LED1" library="SmslsTron" package="CHIP-LED0805" value="" x="5.715" y="5.715" smashed="yes" rot="R180">
+<element name="LED1" library="Tempatroller" package="CHIP-LED0805" value="" x="5.715" y="5.715" smashed="yes" rot="R180">
 <attribute name="PN-DK" value="67-1552-1-ND" x="5.715" y="5.715" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MPN" value="SML-LXT0805IW-TR" x="5.715" y="5.715" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="LABEL" value="PWR" x="9.525" y="5.715" size="1.016" layer="25" align="center"/>
 <attribute name="VALUE" x="5.715" y="5.715" size="1.016" layer="27" align="center"/>
 </element>
-<element name="R6" library="SmslsTron" package="R0805" value="390" x="35.56" y="41.91" smashed="yes">
+<element name="R6" library="Tempatroller" package="R0805" value="390" x="35.56" y="41.91" smashed="yes">
 <attribute name="PN-DK" value="" x="36.195" y="46.355" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="" x="36.195" y="46.355" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="35.56" y="43.815" size="1.016" layer="25" align="center"/>
 <attribute name="VALUE" x="35.56" y="41.91" size="1.016" layer="27" align="center"/>
 </element>
-<element name="LED2" library="SmslsTron" package="CHIP-LED0805" value="" x="35.56" y="39.37" smashed="yes">
+<element name="LED2" library="Tempatroller" package="CHIP-LED0805" value="" x="35.56" y="39.37" smashed="yes">
 <attribute name="PN-DK" value="67-1552-1-ND" x="35.56" y="34.925" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="SML-LXT0805IW-TR" x="35.56" y="34.925" size="1.778" layer="27" display="off"/>
 <attribute name="LABEL" value="HB" x="35.56" y="37.465" size="1.016" layer="25" rot="R180" align="center"/>
 <attribute name="VALUE" x="35.56" y="39.37" size="1.016" layer="27" rot="R180" align="center"/>
 </element>
-<element name="R7" library="SmslsTron" package="R0805" value="390" x="10.16" y="15.875" smashed="yes" rot="R270">
+<element name="R7" library="Tempatroller" package="R0805" value="390" x="10.16" y="15.875" smashed="yes" rot="R270">
 <attribute name="PN-DK" value="" x="13.97" y="14.605" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="" x="13.97" y="14.605" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="8.255" y="15.875" size="1.016" layer="25" rot="R270" align="center"/>
 <attribute name="VALUE" x="10.16" y="15.875" size="1.016" layer="27" rot="R270" align="center"/>
 </element>
-<element name="LED3" library="SmslsTron" package="CHIP-LED0805" value="" x="12.7" y="15.875" smashed="yes" rot="R270">
+<element name="LED3" library="Tempatroller" package="CHIP-LED0805" value="" x="12.7" y="15.875" smashed="yes" rot="R270">
 <attribute name="PN-DK" value="67-1552-1-ND" x="7.62" y="15.875" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="LABEL" value="SSR" x="10.795" y="15.875" size="1.016" layer="25" rot="R90" align="center" display="off"/>
 <attribute name="MPN" value="SML-LXT0805IW-TR" x="7.62" y="15.875" size="1.778" layer="27" rot="R270" display="off"/>
