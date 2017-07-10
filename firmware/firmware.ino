@@ -67,7 +67,7 @@ float PID_Update(PID_s * pid, float error, float measurement)
 // ********************
 
 const float MV_MIN = 0;
-const float MV_MAX = 100;
+const float MV_MAX = 10;
 const float SP_MAX = 250;
 
 const uint16_t HTR_CYCLES_TOTAL = 100;
@@ -150,6 +150,8 @@ void setup()
   Serial.println("Controller Initialized.");
 }
 
+float time_sec = 0;
+int sample_rate_msec = 500;
 void loop()
 {
   DBG_PRINT.print("MAX31855 Temp = ");
@@ -189,6 +191,9 @@ void loop()
   HTR_SetMv(mv);
 
 
+  USE_SERIAL.print("Elapsed: ");
+  USE_SERIAL.print(time_sec);
+  USE_SERIAL.print("sec, ");
   USE_SERIAL.print("TC Temp: ");
   USE_SERIAL.print(tc_pv);
   USE_SERIAL.print("C, ");
@@ -197,5 +202,6 @@ void loop()
   USE_SERIAL.print("%");
   USE_SERIAL.println();
   
-  delay(500);
+  delay(sample_rate_msec);
+  time_sec = time_sec + ((float)sample_rate_msec / 1000);
 }
