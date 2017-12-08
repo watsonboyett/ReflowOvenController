@@ -1,170 +1,42 @@
-#include <SPI.h>
+
+#include "Heater.h"
+#include "PID.h"
+#include "RollingStats.h"
 #include "Adafruit_MAX31856.h"
-
-#define MAXDO   12
-#define MAXDI   11
-#define MAXCS   10
-#define MAXCLK  13
-
-#define HTR_ZC  2
-#define HTR_PWM 3
-
-#define USE_SERIAL Serial
-
-#define DEBUG (false)
-#define DBG_PRINT if(DEBUG)USE_SERIAL
-
-
-// ********************
-// PID controller
-// ********************
-
-typedef struct
-{
-  float measurement_prev; // Last measurement input
-
-  float prop_gain;        // proportional gain
-  float integ_gain;       // integral gain
-  float deriv_gain;       // derivative gain
-
-  float integ_accum;      // accumulator for integrator value
-  float integ_max;        // maximum allowable integrator value
-  float integ_min;        // minimum allowable integrator value
-} PID_s;
-
-float PID_Update(PID_s * pid, float error, float measurement)
-{
-  float pTerm, dTerm, iTerm;
-
-  // calculate the proportional term
-  pTerm = pid->prop_gain * error;
-
-  // calculate the integral state with appropriate limiting
-  pid->integ_accum += error;
-  if (pid->integ_accum > pid->integ_max)
-  {
-    pid->integ_accum = pid->integ_max;
-  }
-  else if (pid->integ_accum < pid->integ_min)
-  {
-    pid->integ_accum = pid->integ_min;
-  }
-  // calculate the integral term
-  iTerm = pid->integ_gain * pid->integ_accum;
-
-  // calculate the derivative term
-  // (based on position, rather than error, to smooth out setpoint changes)
-  dTerm = pid->deriv_gain * (measurement - pid->measurement_prev);
-  pid->measurement_prev = measurement;
-
-  float mv = pTerm + iTerm - dTerm;
-
-  return mv;
-}
-
-
-// ********************
-// Heater controller
-// ********************
+#include <SPI.h>
 
 const float MV_MIN = 0;
-const float MV_MAX = 10;
-const float SP_MAX = 250;
+const float MV_MAX = 50;
+const float SP_MAX = 220;
 
-const uint16_t HTR_CYCLES_TOTAL = 100;
-volatile uint16_t HTR_cycle_curr = 0;
-volatile uint16_t HTR_cycle_trig = 0;
+#define SPI_DO        12
+#define SPI_DI        11
+#define SPI_CLK       13
+#define MAX31856_CS   10
+#define HTR_ZC        2
+#define HTR_PWM       3
 
-void HTR_SetMv(uint16_t mv_pct)
-{
-    if (mv_pct > HTR_CYCLES_TOTAL)
-    {
-        mv_pct = HTR_CYCLES_TOTAL;
-    }
-    else if (mv_pct < 0)
-    {
-        mv_pct = 0;
-    }
-    HTR_cycle_trig = mv_pct;
-}
-
-void HTR_TriggerZeroCross() {
-  bool is_end_of_half_cycle = digitalRead(HTR_ZC);
-  bool is_last_cycle = HTR_cycle_curr == 0;
-
-  bool enable_output = (HTR_cycle_curr < HTR_cycle_trig);
-  enable_output &= !(is_last_cycle && is_end_of_half_cycle);
-  if (enable_output)
-  {
-      digitalWrite(HTR_PWM, true);
-  }
-  else
-  {
-      digitalWrite(HTR_PWM, false);
-  }
-
-  if (is_end_of_half_cycle)
-  {
-      if (is_last_cycle || HTR_cycle_curr > HTR_CYCLES_TOTAL)
-      {
-          HTR_cycle_curr = HTR_CYCLES_TOTAL;
-      }
-      HTR_cycle_curr--;
-  }
-}
-
+#define DEBUG (false)
+#define USE_SERIAL Serial
+#define DBG_PRINT if(DEBUG)USE_SERIAL
 
 // ********************
 // Main bits
 // ********************
 
-Adafruit_MAX31856 TC = Adafruit_MAX31856(MAXCS, MAXDI, MAXDO, MAXCLK);
+Adafruit_MAX31856 TC = Adafruit_MAX31856(MAX31856_CS, SPI_DI, SPI_DO, SPI_CLK);
 
-PID_s pid_params;
+PID_t pid_params;
+RollingStats_t stats;
 
-void setup()
+float get_TC_temp()
 {
-  Serial.begin(9600);
-  while (!Serial)
-  {
-    // Wait for serial port to be ready
-    delay(1);
-  }
-
-  Serial.println("Starting Temperature Controller...");
-
-  // setup heater input and output pins
-  pinMode(HTR_PWM, OUTPUT);
-  pinMode(HTR_ZC, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(HTR_ZC), HTR_TriggerZeroCross, RISING);
-  
-  // HACK: these should be initialized at declaration, but Arduino doesn't support that apparently
-  pid_params.prop_gain = 8;
-  pid_params.integ_gain = 0.040;
-  pid_params.deriv_gain = 50;
-  pid_params.integ_max = 1000;
-  pid_params.integ_min = -1000;
-  pid_params.integ_accum = 0;
-
-  // initialize MAX31856 chip and wait for it to stabilize
-  TC.begin();
-  TC.setThermocoupleType(MAX31856_TCTYPE_K);
-  delay(500);
-
-  Serial.println("Controller Initialized.");
-}
-
-float time_sec = 0;
-int sample_rate_msec = 500;
-float temp_setpoint = 50;
-void loop()
-{
-  DBG_PRINT.print("MAX31855 Temp = ");
+  DBG_PRINT.print("MAX31855 CJ Temp = ");
   DBG_PRINT.print(TC.readCJTemperature());
   DBG_PRINT.println(" C");
 
-  float tc_pv = TC.readThermocoupleTemperature();
-  if (isnan(tc_pv))
+  float tc_temp = TC.readThermocoupleTemperature();
+  if (isnan(tc_temp))
   {
     USE_SERIAL.println("TC Error!");
   }
@@ -182,44 +54,207 @@ void loop()
     if (fault & MAX31856_FAULT_OPEN)    USE_SERIAL.println("Thermocouple Open Fault");
   }
 
-  // Update temperature controller error
-  float error = temp_setpoint - tc_pv;
-  float mv = 0;
+  return tc_temp;
+}
 
-  mv = PID_Update(&pid_params, error, tc_pv);
-
-  // constrain MV to min/max values
-  if (mv > MV_MAX)
+void setup()
+{
+  Serial.begin(9600);
+  while (!Serial)
   {
-    mv = MV_MAX;
+    // Wait for serial port to be ready
+    delay(1);
   }
-  else if (mv < MV_MIN) 
+
+  Serial.println("Starting Temperature Controller...");
+
+  Heater_Init(HTR_PWM, HTR_ZC);
+  Heater_SetMvLimits(MV_MIN, MV_MAX);
+
+  // initialize PID parameters
+  // HACK: these should be initialized at declaration, but Arduino doesn't support that apparently
+  pid_params.prop_gain = 8;
+  pid_params.integ_gain = 0.040;
+  pid_params.deriv_gain = 50;
+  pid_params.integ_max = 1000;
+  pid_params.integ_min = -1000;
+  pid_params.integ_accum = 0;
+
+  // initialize MAX31856 chip and wait for it to stabilize
+  TC.begin();
+  TC.setThermocoupleType(MAX31856_TCTYPE_K);
+  delay(500);
+
+  // initialize rolling stats
+  stats.window_size = 20;
+  stats.value_prev = get_TC_temp();;
+  stats.average = get_TC_temp();;
+  stats.variance = 0;
+
+  Serial.println("Controller Initialized.");
+}
+
+float interp1(float x0, float x1, float y0, float y1, float x)
+{
+  if (abs(x1 - x0) < 1e-5)
   {
-    mv = MV_MIN;
-  } 
+    return (y0 + y1) / 2;
+  }
+  return y0 + (x - x0) * (y1 - y0) / (x1 - x0);
+}
+
+float time_sec = 0;
+int sample_rate_msec = 500;
+float temp_setpoint = 25;
+void loop()
+{
+  float temp_curr = get_TC_temp();
+  RollingStats_Update(&stats, temp_curr);
+
+  // Update temperature controller setpoint
+  switch (1)
+  {
+    // constant temperature
+    case (0):
+      {
+        temp_setpoint = 25;
+        break;
+      }
+
+    // setpoint temperature profile (for reflow soldering)
+    case (1):
+      {
+        if (time_sec < 90)
+        {
+          temp_setpoint = interp1(0, 90, 25, 145, time_sec);
+        }
+        else if (time_sec < 180)
+        {
+          temp_setpoint = interp1(90, 180, 145, 180, time_sec);
+        }
+        else if (time_sec < 210)
+        {
+          temp_setpoint = interp1(180, 210, 180, 210, time_sec);
+        }
+        else if (time_sec < 240)
+        {
+          temp_setpoint = interp1(210, 240, 210, 180, time_sec);
+        }
+        else if (time_sec < 300)
+        {
+          temp_setpoint = interp1(210, 300, 210, 25, time_sec);
+        }
+        else
+        {
+          temp_setpoint = 25;
+        }
+        break;
+      }
+  }
+
+  // Update temperature controller output
+  float error = temp_setpoint - temp_curr;
+  float mv = 0;
+  static int temp_stable_count = 0;
+  switch (2)
+  {
+    // Heater output OFF
+    case (0):
+      {
+        mv = 0;
+        break;
+      }
+
+    // thermostat controller
+    case (1):
+      {
+        const float error_thresh = 0.5;
+        if (error > error_thresh)
+        {
+          mv = MV_MAX;
+        }
+        else if (error < -error_thresh)
+        {
+          mv = MV_MIN;
+        }
+
+        break;
+      }
+
+    // PID controller
+    case (2):
+      {
+        mv = PID_Update(&pid_params, error, temp_curr);
+        break;
+      }
+
+    // step response data collection
+    case (3):
+      {
+        bool temp_stable = false;
+        const float temp_stable_thresh = 0.5;
+        const int temp_stable_count_thresh = 20;
+
+        static float mv_prev = 0;
+        static float mv_curr = 0;
+
+        temp_stable = abs(stats.variance) < temp_stable_thresh;
+        temp_stable_count = temp_stable ? temp_stable_count + 1 : 0;
+
+        if (temp_stable_count > temp_stable_count_thresh)
+        {
+          temp_stable_count = 0;
+
+          // let heater cool down to ambient before running next MV level
+          if (mv_curr > 0)
+          {
+            mv_prev = mv_curr;
+            mv_curr = 0;
+          }
+          else
+          {
+            mv_curr = mv_prev + 5;
+          }
+        }
+
+        mv = mv_curr;
+        break;
+      }
+  }
+
 
   // prevent heater from exceeding max temp setpoint
-  // NOTE: threshold is slightly above setpoint to allow a little overshoot
-  // without affecting any control algorithms
-  if (tc_pv > (SP_MAX + 5))
+  // NOTE: threshold is slightly above setpoint to allow
+  // for some overshoot without affecting any control algorithms
+  if (temp_curr > (SP_MAX + 5))
   {
     mv = 0;
   }
 
-  HTR_SetMv(mv);
+  Heater_SetTargetMv(mv);
+  uint16_t mv_cur = Heater_GetCurrentMv();
 
 
-  USE_SERIAL.print("Elapsed: ");
+  USE_SERIAL.print("Time: ");
   USE_SERIAL.print(time_sec);
-  USE_SERIAL.print("sec, ");
-  USE_SERIAL.print("TC Temp: ");
-  USE_SERIAL.print(tc_pv);
+  USE_SERIAL.print("s, ");
+  USE_SERIAL.print("SP: ");
+  USE_SERIAL.print(temp_setpoint);
   USE_SERIAL.print("C, ");
-  USE_SERIAL.print("Heater Mv = ");
-  USE_SERIAL.print(mv);
-  USE_SERIAL.print("%");
+  USE_SERIAL.print("PV: ");
+  USE_SERIAL.print(temp_curr);
+  USE_SERIAL.print("C, ");
+  USE_SERIAL.print("MV = ");
+  USE_SERIAL.print(mv_cur);
+  USE_SERIAL.print("%, ");
+  USE_SERIAL.print("Var = ");
+  USE_SERIAL.print(stats.variance);
+  USE_SERIAL.print(", StableCnt = ");
+  USE_SERIAL.print(temp_stable_count);
   USE_SERIAL.println();
-  
+
   delay(sample_rate_msec);
   time_sec = time_sec + ((float)sample_rate_msec / 1000);
 }
+
+
