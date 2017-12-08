@@ -127,7 +127,7 @@
 <layer number="254" name="cooling" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <library>
-<description>Generated from &lt;b&gt;Tempatroller.sch&lt;/b&gt;&lt;p&gt;
+<description>Generated from &lt;b&gt;ThermoBot.sch&lt;/b&gt;&lt;p&gt;
 by exp-lbrs.ulp</description>
 <packages>
 <package name="1X02">

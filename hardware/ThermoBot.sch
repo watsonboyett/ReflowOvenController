@@ -140,8 +140,8 @@
 </layers>
 <schematic>
 <libraries>
-<library name="Tempatroller">
-<description>Generated from &lt;b&gt;Tempatroller.sch&lt;/b&gt;&lt;p&gt;
+<library name="ThermoBot">
+<description>Generated from &lt;b&gt;ThermoBot.sch&lt;/b&gt;&lt;p&gt;
 by exp-lbrs.ulp</description>
 <packages>
 <package name="1X08">
@@ -14415,59 +14415,59 @@ LETTER landscape</description>
 </class>
 </classes>
 <parts>
-<part name="DIO-L" library="Tempatroller" deviceset="PINHD-1X8" device="TH" value="8x1F-H8.5"/>
-<part name="DIO-H" library="Tempatroller" deviceset="PINHD-1X10" device="TH" value="10x1F-H8.5"/>
-<part name="AIO" library="Tempatroller" deviceset="PINHD-1X6" device="TH" value="6x1F-H8.5"/>
-<part name="U1" library="Tempatroller" deviceset="VSK-S5" device="">
+<part name="DIO-L" library="ThermoBot" deviceset="PINHD-1X8" device="TH" value="8x1F-H8.5"/>
+<part name="DIO-H" library="ThermoBot" deviceset="PINHD-1X10" device="TH" value="10x1F-H8.5"/>
+<part name="AIO" library="ThermoBot" deviceset="PINHD-1X6" device="TH" value="6x1F-H8.5"/>
+<part name="U1" library="ThermoBot" deviceset="VSK-S5" device="">
 <attribute name="PN-DK" value="102-2387-ND"/>
 </part>
-<part name="POWER" library="Tempatroller" deviceset="PINHD-1X8" device="TH" value="8x1F-H8.5"/>
-<part name="C1" library="Tempatroller" deviceset="CPOL-US" device="153CLV-1014" value="220u">
+<part name="POWER" library="ThermoBot" deviceset="PINHD-1X8" device="TH" value="8x1F-H8.5"/>
+<part name="C1" library="ThermoBot" deviceset="CPOL-US" device="153CLV-1014" value="220u">
 <attribute name="PN-DK" value="PCE3812CT-ND"/>
 </part>
-<part name="C2" library="Tempatroller" deviceset="C-US" device="C0805" value="1u"/>
-<part name="U2" library="Tempatroller" deviceset="MAX31856" device=""/>
-<part name="C3" library="Tempatroller" deviceset="C-US" device="C0805" value="100n"/>
-<part name="C4" library="Tempatroller" deviceset="C-US" device="C0805" value="100n"/>
-<part name="C5" library="Tempatroller" deviceset="C-US" device="C0805" value="100n"/>
-<part name="C6" library="Tempatroller" deviceset="C-US" device="C0805" value="10n"/>
-<part name="C7" library="Tempatroller" deviceset="C-US" device="C0805" value="10n"/>
-<part name="U3" library="Tempatroller" deviceset="LTV-354T" device=""/>
-<part name="R1" library="Tempatroller" deviceset="R-US_" device="R1206" value="47k"/>
-<part name="R2" library="Tempatroller" deviceset="R-US_" device="R1206" value="47k"/>
-<part name="F1" library="Tempatroller" deviceset="FUSE" device="2410" value="250V/1A">
+<part name="C2" library="ThermoBot" deviceset="C-US" device="C0805" value="1u"/>
+<part name="U2" library="ThermoBot" deviceset="MAX31856" device=""/>
+<part name="C3" library="ThermoBot" deviceset="C-US" device="C0805" value="100n"/>
+<part name="C4" library="ThermoBot" deviceset="C-US" device="C0805" value="100n"/>
+<part name="C5" library="ThermoBot" deviceset="C-US" device="C0805" value="100n"/>
+<part name="C6" library="ThermoBot" deviceset="C-US" device="C0805" value="10n"/>
+<part name="C7" library="ThermoBot" deviceset="C-US" device="C0805" value="10n"/>
+<part name="U3" library="ThermoBot" deviceset="LTV-354T" device=""/>
+<part name="R1" library="ThermoBot" deviceset="R-US_" device="R1206" value="47k"/>
+<part name="R2" library="ThermoBot" deviceset="R-US_" device="R1206" value="47k"/>
+<part name="F1" library="ThermoBot" deviceset="FUSE" device="2410" value="250V/1A">
 <attribute name="MPN" value="0454001.MR"/>
 <attribute name="PN-DK" value="F3144CT-ND"/>
 </part>
-<part name="AC/L" library="Tempatroller" deviceset="JMP-1" device="-QUICK"/>
-<part name="AC/N" library="Tempatroller" deviceset="JMP-1" device="-QUICK"/>
-<part name="JP1" library="Tempatroller" deviceset="M02" device="5MM" value="M025MM"/>
-<part name="JP3" library="Tempatroller" deviceset="M02" device="5MM" value="M025MM"/>
-<part name="U4" library="Tempatroller" deviceset="FODM3053" device=""/>
-<part name="R3" library="Tempatroller" deviceset="R-US_" device="R0805" value="100"/>
-<part name="HTR/L" library="Tempatroller" deviceset="JMP-1" device="-QUICK"/>
-<part name="HTR/N" library="Tempatroller" deviceset="JMP-1" device="-QUICK"/>
-<part name="U5" library="Tempatroller" deviceset="T835" device="-TO263" value="T25">
+<part name="AC/L" library="ThermoBot" deviceset="JMP-1" device="-QUICK"/>
+<part name="AC/N" library="ThermoBot" deviceset="JMP-1" device="-QUICK"/>
+<part name="JP1" library="ThermoBot" deviceset="M02" device="5MM" value="M025MM"/>
+<part name="JP3" library="ThermoBot" deviceset="M02" device="5MM" value="M025MM"/>
+<part name="U4" library="ThermoBot" deviceset="FODM3053" device=""/>
+<part name="R3" library="ThermoBot" deviceset="R-US_" device="R0805" value="100"/>
+<part name="HTR/L" library="ThermoBot" deviceset="JMP-1" device="-QUICK"/>
+<part name="HTR/N" library="ThermoBot" deviceset="JMP-1" device="-QUICK"/>
+<part name="U5" library="ThermoBot" deviceset="T835" device="-TO263" value="T25">
 <attribute name="PN-DK" value="497-10581-1-ND"/>
 </part>
-<part name="R4" library="Tempatroller" deviceset="R-US_" device="R1206" value="1k"/>
-<part name="FRAME1" library="Tempatroller" deviceset="LETTER_L" device="">
+<part name="R4" library="ThermoBot" deviceset="R-US_" device="R1206" value="1k"/>
+<part name="FRAME1" library="ThermoBot" deviceset="LETTER_L" device="">
 <attribute name="SECTION" value=""/>
 </part>
-<part name="U$1" library="Tempatroller" deviceset="SILK_QC" device="">
-<attribute name="PRODUCT" value="TempController"/>
+<part name="U$1" library="ThermoBot" deviceset="SILK_QC" device="">
+<attribute name="PRODUCT" value="ThermoBot"/>
 <attribute name="REV" value="1B"/>
 </part>
-<part name="R5" library="Tempatroller" deviceset="R-US_" device="R0805" value="390"/>
-<part name="LED1" library="Tempatroller" deviceset="LED" device="CHIP-LED0805">
+<part name="R5" library="ThermoBot" deviceset="R-US_" device="R0805" value="390"/>
+<part name="LED1" library="ThermoBot" deviceset="LED" device="CHIP-LED0805">
 <attribute name="LABEL" value="PWR"/>
 </part>
-<part name="R6" library="Tempatroller" deviceset="R-US_" device="R0805" value="390"/>
-<part name="LED2" library="Tempatroller" deviceset="LED" device="CHIP-LED0805">
+<part name="R6" library="ThermoBot" deviceset="R-US_" device="R0805" value="390"/>
+<part name="LED2" library="ThermoBot" deviceset="LED" device="CHIP-LED0805">
 <attribute name="LABEL" value="HB"/>
 </part>
-<part name="R7" library="Tempatroller" deviceset="R-US_" device="R0805" value="390"/>
-<part name="LED3" library="Tempatroller" deviceset="LED" device="CHIP-LED0805">
+<part name="R7" library="ThermoBot" deviceset="R-US_" device="R0805" value="390"/>
+<part name="LED3" library="ThermoBot" deviceset="LED" device="CHIP-LED0805">
 <attribute name="LABEL" value="SSR"/>
 </part>
 </parts>
