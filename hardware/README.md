@@ -21,5 +21,7 @@
 * provide safety mechanism for using external SSR (ensure that internal SSR isn't active)
 ** perhaps a jumper for setting internal/external SSR
 * provide breakout connections for unused pins (for switches, LCD panel, or other sensors)
+* Add mounting holes that match with Arduino Uno r3 holes
+* Add fiducials to allow for pick and place alignment
 * Add "Risk of Shock" warnings to MAINS partition (both sides)
 
