@@ -6,7 +6,7 @@
 #include <SPI.h>
 
 const float MV_MIN = 0;
-const float MV_MAX = 50;
+const float MV_MAX = 30;
 const float SP_MAX = 220;
 
 #define SPI_DO        12
